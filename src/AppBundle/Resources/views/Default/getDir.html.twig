@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Informes list</h1>
+    <table id="tableD" data-toggle="table" 
+           data-search="true"
+           data-toolbar="#toolbar"
+                                   data-show-export="true"
+                                   data-minimum-count-columns="2"
+                                   data-page-list="[5, 10, 20, 50, 100, ALL]"
+                                   data-show-columns="true"
+                                   data-pagination="true"
+                                   data-show-footer="true">
+        <thead>
+            <tr>
+              {% for encabezado in encabezados %}
+                <th data-field="{{encabezado}}">{{encabezado}}</th>
+                {%endfor%}
+            </tr>
+        </thead>
+    </table>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{asset('css/bootstrap-table/bootstrap-table.css')}}">
+    {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('js/bootstrap-table/bootstrap-table.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap-table/locale/bootstrap-table-es-AR.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap-table/extensions/export/bootstrap-table-export.js')}}"></script>
+
+    <script type="text/javascript">
+        datos={{ data | json_encode | raw }};
+        $.ajax({
+            url: 'http://192.168.65.44:3000/buscar_direccion_bulk',
+            crossDomain: true,
+            data: JSON.stringify(datos),
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST'
+        }).done(function (rawData) {
+            $('#tableD').bootstrapTable({data: rawData});
+        });
+        </script>
+{% endblock %}

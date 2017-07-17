@@ -1,0 +1,169 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use AppBundle\Entity\Archivo;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Controller\CsvResponse;
+use AppBundle\Entity\Informe;
+
+
+/**
+ * Archivo controller.
+ *
+ * @Route("archivo")
+ */
+class ArchivoController extends Controller
+{
+    /**
+     * Lists all archivo entities.
+     *
+     * @Route("/", name="archivos_index")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $archivos = $em->getRepository('AppBundle:Archivo')->findAll();
+
+        return $this->render('archivos/index.html.twig', array(
+            'archivos' => $archivos,
+        ));
+    }
+
+    /**
+     * Creates a new archivo entity.
+     *
+     * @Route("/new", name="archivos_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newAction(Request $request)
+    {
+        $archivo = new Archivo();
+        $form = $this->createForm('AppBundle\Form\ArchivosType', $archivo);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $archivo->getDireccion();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+            '/tmp/',
+                $fileName
+            );
+            //$em = $this->getDoctrine()->getManager();
+            //$em->persist($archivo);
+            //$em->flush();
+            //$file_to_array=explode("\n", str_replace("\"", "",file_get_contents('/tmp/'.$fileName)));
+            //22622085
+//            foreach(array_map('str_getcsv',file('/tmp/'.$fileName)) as $unInforme){
+//                $informe = new Informe();
+//                $informe->setNroRemitente($unInforme[0]);
+//                $informe->setDenominacion($unInforme[0]);
+//                $informe->setFecha($unInforme[0]);
+//                $informe->setDiasTranscurridost($unInforme[0]);
+//                $informe->setTipoAlerta($unInforme[0]);
+//                
+//                $informe->setEstadoPeriodo($unInforme[0]);
+  //          }
+//            $response = new CSVResponse(array_map('str_getcsv',file('/tmp/'.$fileName)), 200, [] );
+//$response->setFilename( "data.csv" );
+//return $response;
+            $datos=array_map('str_getcsv',file('/tmp/'.$fileName));
+            $encabezado=$datos[0];          
+            unset($datos[0]);
+            foreach ($datos as $dato){
+                for($i=0;$i<sizeof($encabezado);$i++){
+                    $aux_Data['data'][$encabezado[$i]]=$dato[$i];
+                }
+                 $postData['data']['direcciones'][]=$aux_Data['data'];
+            }
+           //return $this->redirectToRoute('archivos_show', array('id' => $archivo->getId()));
+            return $this->render('AppBundle:Default:getDir.html.twig', array('data'=>$postData['data'],'encabezados'=>$encabezado));
+        }
+
+        return $this->render('archivos/new.html.twig', array(
+            'archivo' => $archivo,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a archivo entity.
+     *
+     * @Route("/{id}", name="archivos_show")
+     * @Method("GET")
+     */
+    public function showAction(Archivo $archivo)
+    {
+        $deleteForm = $this->createDeleteForm($archivo);
+
+        return $this->render('archivos/show.html.twig', array(
+            'archivo' => $archivo,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing archivo entity.
+     *
+     * @Route("/{id}/edit", name="archivos_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Archivo $archivo)
+    {
+        $deleteForm = $this->createDeleteForm($archivo);
+        $editForm = $this->createForm('AppBundle\Form\ArchivosType', $archivo);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('archivos_edit', array('id' => $archivo->getId()));
+        }
+
+        return $this->render('archivos/edit.html.twig', array(
+            'archivo' => $archivo,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Deletes a archivo entity.
+     *
+     * @Route("/{id}", name="archivos_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, Archivo $archivo)
+    {
+        $form = $this->createDeleteForm($archivo);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($archivo);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('archivos_index');
+    }
+
+    /**
+     * Creates a form to delete a archivo entity.
+     *
+     * @param Archivos $archivo The archivo entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Archivos $archivo)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('archivos_delete', array('id' => $archivo->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
+    }
+}
