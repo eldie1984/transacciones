@@ -76,7 +76,7 @@
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{node}}/static/css/bootstrap-table/bootstrap-table.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-table/bootstrap-table.css')}}">
     {% endblock %}
 {% block javascripts %}
     {{ parent() }}
