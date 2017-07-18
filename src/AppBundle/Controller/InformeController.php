@@ -22,12 +22,12 @@ class InformeController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $informes = $em->getRepository('AppBundle:Informe')->findAll();
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $informes = $em->getRepository('AppBundle:Informe')->findAll();
 
         return $this->render('informe/index.html.twig', array(
-            'informes' => $informes,
+//            'informes' => $informes,
         ));
     }
 

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Informes list</h1>
+    <h1>Listado Informes</h1>
 
-    <table>
+    {#<table>
         <thead>
             <tr>
                 <th>Id</th>
@@ -19,31 +19,31 @@
         </thead>
 
 
-    </table>
-    <table id="tableD"
-           data-toolbar="#toolbar"
+    </table>#}
+    <table id="tableD" data-toggle="table"
+           {#data-toolbar="#toolbar"
            data-search="true"
            data-show-export="true"
            data-minimum-count-columns="2"
            data-page-list="[5, 10, 20, 50, 100, ALL]"
            data-show-columns="true"
            data-pagination="true"
-           data-show-footer="true">
+           data-show-footer="true"#}>
         <thead>
             <tr>
                 <th data-field="Id" data-visible="false">Actuación</th>
-                <th data-field="nroremitente">Nro Remitente/th>
+                <th data-field="nroremitente">Nro Remitente</th>
                 <th data-field="denominacion">Denominacion</th>
                 <th data-field="fecha">Fecha</th>
                 <th data-field="Diastranscurridos">Dias Transcurridos</th>
-                <th data-field="Tipoalerta">Tipoalerta</th>
+                <th data-field="Tipoalerta">Tipo Alerta</th>
                 <th data-field="Estadoperiodo">Estado Periodo</th>
                 <th data-field="Tipocomprobante">Tipo Comprobante</th>
                 <th data-field="Actions">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            {% for informe in informes %}
+            {#{% for informe in informes %}
                 <tr>
                     <td><a href="{{ path('informe_show', { 'id': informe.id }) }}">{{ informe.id }}</a></td>
                     <td>{{ informe.nroRemitente }}</td>
@@ -64,13 +64,13 @@
                         </ul>
                     </td>
                 </tr>
-            {% endfor %}
+            {% endfor %}#}
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('informe_new') }}">Create a new informe</a>
+            <a href="{{ path('informe_new') }}">Subir Informe</a>
         </li>
     </ul>
 {% endblock %}
