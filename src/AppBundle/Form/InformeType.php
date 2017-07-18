@@ -13,7 +13,7 @@ class InformeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nroRemitente')->add('denominacion')->add('fecha')->add('diasTranscurridos')->add('tipoAlerta')->add('estadoPeriodo')->add('tipoComprobante');
+        $builder->add('nroRemitente')->add('denominacion')->add('fecha')->add('diasTranscurridos')->add('tipoAlerta')->add('estado')->add('tipoComprobante');
     }
     
     /**
