@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Informe</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ informe.id }}</td>
+            </tr>
+            <tr>
+                <th>Nroremitente</th>
+                <td>{{ informe.nroRemitente }}</td>
+            </tr>
+            <tr>
+                <th>Denominacion</th>
+                <td>{{ informe.denominacion }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{% if informe.fecha %}{{ informe.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Diastranscurridos</th>
+                <td>{{ informe.diasTranscurridos }}</td>
+            </tr>
+            <tr>
+                <th>Tipoalerta</th>
+                <td>{{ informe.tipoAlerta }}</td>
+            </tr>
+            <tr>
+                <th>Estadoperiodo</th>
+                <td>{{ informe.estadoPeriodo }}</td>
+            </tr>
+            <tr>
+                <th>Tipocomprobante</th>
+                <td>{{ informe.tipoComprobante }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('informe_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('informe_edit', { 'id': informe.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

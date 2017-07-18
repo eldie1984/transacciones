@@ -453,7 +453,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.b881586b332eea2a523a66902b375466"/>
+      <argument type="service" id="service_locator.ac4e64f65b559bc0253ae17169dd31b2"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -621,7 +621,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>oYh-H4mtHlwwvqjZHWLwlV</argument>
+      <argument>F4uQqXp7MDKwR9giRlxVIX</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -631,7 +631,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>oYh-H4mtHlwwvqjZHWLwlV</argument>
+      <argument>F4uQqXp7MDKwR9giRlxVIX</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -1388,14 +1388,6 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -2181,12 +2173,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>596d6252486d15.93838778</argument>
+      <argument>596e1dc7ad2948.71378742</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>596d6252486d15.93838778</argument>
+      <argument>596e1dc7ad2948.71378742</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3207,10 +3199,6 @@
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
-    <service id="service_locator.4f8384c8862c511eefe34301cff90111" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection"/>
-    </service>
     <service id="service_locator.b00daf1f70b8a317833784260f9c2096" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
@@ -3227,7 +3215,7 @@
         <argument key="informe" type="service" id="autowired.AppBundle\Entity\Informe"/>
       </argument>
     </service>
-    <service id="service_locator.b881586b332eea2a523a66902b375466" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.ac4e64f65b559bc0253ae17169dd31b2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="AppBundle\Controller\ArchivoController:deleteAction" type="service" id="service_locator.698979721c1f21735a321e292814b395"/>
@@ -3481,7 +3469,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>cma0SakMJq</argument>
       <argument>0</argument>
-      <argument>oYh-H4mtHlwwvqjZHWLwlV</argument>
+      <argument>F4uQqXp7MDKwR9giRlxVIX</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3489,7 +3477,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>H7LLaNn7nv</argument>
       <argument>0</argument>
-      <argument>oYh-H4mtHlwwvqjZHWLwlV</argument>
+      <argument>F4uQqXp7MDKwR9giRlxVIX</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3497,7 +3485,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>X+h2VJNNtv</argument>
       <argument>0</argument>
-      <argument>oYh-H4mtHlwwvqjZHWLwlV</argument>
+      <argument>F4uQqXp7MDKwR9giRlxVIX</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3505,7 +3493,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>rOxsqhZSz7</argument>
       <argument>0</argument>
-      <argument>oYh-H4mtHlwwvqjZHWLwlV</argument>
+      <argument>F4uQqXp7MDKwR9giRlxVIX</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

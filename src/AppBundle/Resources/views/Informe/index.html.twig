@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado Informes</h1>
+
+    {#<table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nroremitente</th>
+                <th>Denominacion</th>
+                <th>Fecha</th>
+                <th>Diastranscurridos</th>
+                <th>Tipoalerta</th>
+                <th>Estadoperiodo</th>
+                <th>Tipocomprobante</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+
+    </table>#}
+    <table id="tableD" data-toggle="table"
+           {#data-toolbar="#toolbar"
+           data-search="true"
+           data-show-export="true"
+           data-minimum-count-columns="2"
+           data-page-list="[5, 10, 20, 50, 100, ALL]"
+           data-show-columns="true"
+           data-pagination="true"
+           data-show-footer="true"#}>
+        <thead>
+            <tr>
+                <th data-field="Id" data-visible="false">Actuación</th>
+                <th data-field="nroremitente">Nro Remitente</th>
+                <th data-field="denominacion">Denominacion</th>
+                <th data-field="fecha">Fecha</th>
+                <th data-field="Diastranscurridos">Dias Transcurridos</th>
+                <th data-field="Tipoalerta">Tipo Alerta</th>
+                <th data-field="Estadoperiodo">Estado Periodo</th>
+                <th data-field="Tipocomprobante">Tipo Comprobante</th>
+                <th data-field="Actions">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#{% for informe in informes %}
+                <tr>
+                    <td><a href="{{ path('informe_show', { 'id': informe.id }) }}">{{ informe.id }}</a></td>
+                    <td>{{ informe.nroRemitente }}</td>
+                    <td>{{ informe.denominacion }}</td>
+                    <td>{% if informe.fecha %}{{ informe.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ informe.diasTranscurridos }}</td>
+                    <td>{{ informe.tipoAlerta }}</td>
+                    <td>{{ informe.estadoPeriodo }}</td>
+                    <td>{{ informe.tipoComprobante }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('informe_show', { 'id': informe.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('informe_edit', { 'id': informe.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}#}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('informe_new') }}">Subir Informe</a>
+        </li>
+    </ul>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{asset('css/bootstrap-table/bootstrap-table.css')}}">
+    {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('js/bootstrap-table/bootstrap-table.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap-table/locale/bootstrap-table-es-AR.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap-table/extensions/export/bootstrap-table-export.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jquery/tableExport.js')}}"></script>
+{% endblock %}
