@@ -108,67 +108,16 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        elseif (0 === strpos($pathinfo, '/archivo')) {
-            // archivos_index
-            if ('/archivo' === $trimmedPathinfo) {
-                if ('GET' !== $canonicalMethod) {
-                    $allow[] = 'GET';
-                    goto not_archivos_index;
-                }
-
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'archivos_index');
-                }
-
-                return array (  '_controller' => 'AppBundle\\Controller\\ArchivoController::indexAction',  '_route' => 'archivos_index',);
+        // archivos_new
+        if ('/archivo/new' === $pathinfo) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_archivos_new;
             }
-            not_archivos_index:
 
-            // archivos_new
-            if ('/archivo/new' === $pathinfo) {
-                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
-                    $allow = array_merge($allow, array('GET', 'POST'));
-                    goto not_archivos_new;
-                }
-
-                return array (  '_controller' => 'AppBundle\\Controller\\ArchivoController::newAction',  '_route' => 'archivos_new',);
-            }
-            not_archivos_new:
-
-            // archivos_show
-            if (preg_match('#^/archivo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if ('GET' !== $canonicalMethod) {
-                    $allow[] = 'GET';
-                    goto not_archivos_show;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'archivos_show')), array (  '_controller' => 'AppBundle\\Controller\\ArchivoController::showAction',));
-            }
-            not_archivos_show:
-
-            // archivos_edit
-            if (preg_match('#^/archivo/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
-                    $allow = array_merge($allow, array('GET', 'POST'));
-                    goto not_archivos_edit;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'archivos_edit')), array (  '_controller' => 'AppBundle\\Controller\\ArchivoController::editAction',));
-            }
-            not_archivos_edit:
-
-            // archivos_delete
-            if (preg_match('#^/archivo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if ('DELETE' !== $canonicalMethod) {
-                    $allow[] = 'DELETE';
-                    goto not_archivos_delete;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'archivos_delete')), array (  '_controller' => 'AppBundle\\Controller\\ArchivoController::deleteAction',));
-            }
-            not_archivos_delete:
-
+            return array (  '_controller' => 'AppBundle\\Controller\\ArchivoController::newAction',  '_route' => 'archivos_new',);
         }
+        not_archivos_new:
 
         // homepage
         if ('' === $trimmedPathinfo) {

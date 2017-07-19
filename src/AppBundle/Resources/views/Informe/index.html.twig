@@ -43,7 +43,7 @@
             </tr>
         </thead>
         <tbody>
-            {#{% for informe in informes %}
+            {% for informe in informes %}
                 <tr>
                     <td><a href="{{ path('informe_show', { 'id': informe.id }) }}">{{ informe.id }}</a></td>
                     <td>{{ informe.nroRemitente }}</td>
@@ -51,7 +51,7 @@
                     <td>{% if informe.fecha %}{{ informe.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ informe.diasTranscurridos }}</td>
                     <td>{{ informe.tipoAlerta }}</td>
-                    <td>{{ informe.estadoPeriodo }}</td>
+                    <td>{{ informe.estado}}</td>
                     <td>{{ informe.tipoComprobante }}</td>
                     <td>
                         <ul>
@@ -64,13 +64,13 @@
                         </ul>
                     </td>
                 </tr>
-            {% endfor %}#}
+            {% endfor %}
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('informe_new') }}">Subir Informe</a>
+            <a href="{{ path('archivos_new') }}">Subir Informe</a>
         </li>
     </ul>
 {% endblock %}

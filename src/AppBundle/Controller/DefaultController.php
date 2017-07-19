@@ -19,12 +19,12 @@ class DefaultController extends AbstractController {
      */
     public function indexAction()
     {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $informes = $em->getRepository('AppBundle:Informe')->findAll();
+        $em = $this->getDoctrine()->getManager();
+
+        $informes = $em->getRepository('AppBundle:Informe')->findAll();
 
         return $this->render('AppBundle:Informe:index.html.twig', array(
-//            'informes' => $informes,
+            'informes' => $informes,
         ));
     }
 
