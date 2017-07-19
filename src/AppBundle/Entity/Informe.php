@@ -68,6 +68,12 @@ class Informe
      * @ORM\Column(name="estado", type="string", length=255)
      */
     private $estado;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="monto", type="integer", nullable=true)
+     */
+    private $monto;
 
 
 
@@ -247,5 +253,28 @@ class Informe
     public function getEstado()
     {
         return $this->estado;
+    }
+    /**
+     * Set monto
+     *
+     * @param integer $monto
+     *
+     * @return Informe
+     */
+    public function setMonto($monto)
+    {
+        $this->monto = $monto;
+
+        return $this;
+    }
+
+    /**
+     * Get getMonto
+     *
+     * @return integer
+     */
+    public function getMonto()
+    {
+        return $this->monto;
     }
 }

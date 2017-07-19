@@ -46,18 +46,35 @@ class ArchivoController extends Controller
                 unset($datos[0]);
             }
             foreach($datos as $unInforme){
-                $informe = new Informe();
+                $product = $this->getDoctrine()
+        ->getRepository(Informe::class)
+        ->findOneBy(array('nroRemitente' => $unInforme[0]));
+
+    if (!$product) {
+        $informe = new Informe();
                 $informe->setNroRemitente($unInforme[0]);
                 $informe->setDenominacion($unInforme[1]);
                 $informe->setFecha(\DateTime::createFromFormat('d/m/Y', $unInforme[2]));
                 $informe->setDiasTranscurridos($unInforme[3]);
                 $informe->setTipoAlerta($unInforme[4]);
-                
                 $informe->setEstado($unInforme[5]);
                 $informe->setTipoComprobante($unInforme[6]);
-                var_dump($unInforme);
+                $informe->setMonto($unInforme[7]);
                 $em->persist($informe);
                 $em->flush();
+    }else{
+        
+                $product->setDenominacion($unInforme[1]);
+                $product->setFecha(\DateTime::createFromFormat('d/m/Y', $unInforme[2]));
+                $product->setDiasTranscurridos($unInforme[3]);
+                $product->setTipoAlerta($unInforme[4]);
+                $product->setEstado($unInforme[5]);
+                $product->setTipoComprobante($unInforme[6]);
+                 $product->setMonto($unInforme[7]);
+                $em->persist($product);
+                $em->flush();
+    }
+                
             }
 //            $response = new CSVResponse(array_map('str_getcsv',file('/tmp/'.$fileName)), 200, [] );
 //$response->setFilename( "data.csv" );
