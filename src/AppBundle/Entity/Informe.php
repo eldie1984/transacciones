@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="informe")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\InformeRepository")
  */
-class Informe
-{
+class Informe {
+
     /**
      * @var int
      *
@@ -55,19 +55,21 @@ class Informe
      * @ORM\Column(name="tipo_alerta", type="string", length=255)
      */
     private $tipoAlerta;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="tipo_comprobante", type="string", length=255)
      */
     private $tipoComprobante;
+
     /**
      * @var string
      *
      * @ORM\Column(name="estado", type="string", length=255)
      */
     private $estado;
+
     /**
      * @var int
      *
@@ -75,16 +77,37 @@ class Informe
      */
     private $monto;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_creacion", type="datetime", nullable=true)
+     */
+    private $fechaCreacion;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_actualizacion", type="datetime", nullable=true)
+     */
+    private $fechaActualizacion;
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -94,8 +117,7 @@ class Informe
      *
      * @return Informe
      */
-    public function setNroRemitente($nroRemitente)
-    {
+    public function setNroRemitente($nroRemitente) {
         $this->nroRemitente = $nroRemitente;
 
         return $this;
@@ -106,8 +128,7 @@ class Informe
      *
      * @return integer
      */
-    public function getNroRemitente()
-    {
+    public function getNroRemitente() {
         return $this->nroRemitente;
     }
 
@@ -118,8 +139,7 @@ class Informe
      *
      * @return Informe
      */
-    public function setDenominacion($denominacion)
-    {
+    public function setDenominacion($denominacion) {
         $this->denominacion = $denominacion;
 
         return $this;
@@ -130,8 +150,7 @@ class Informe
      *
      * @return string
      */
-    public function getDenominacion()
-    {
+    public function getDenominacion() {
         return $this->denominacion;
     }
 
@@ -142,8 +161,7 @@ class Informe
      *
      * @return Informe
      */
-    public function setFecha($fecha)
-    {
+    public function setFecha($fecha) {
         $this->fecha = $fecha;
 
         return $this;
@@ -154,8 +172,7 @@ class Informe
      *
      * @return \DateTime
      */
-    public function getFecha()
-    {
+    public function getFecha() {
         return $this->fecha;
     }
 
@@ -166,8 +183,7 @@ class Informe
      *
      * @return Informe
      */
-    public function setDiasTranscurridos($diasTranscurridos)
-    {
+    public function setDiasTranscurridos($diasTranscurridos) {
         $this->diasTranscurridos = $diasTranscurridos;
 
         return $this;
@@ -178,8 +194,7 @@ class Informe
      *
      * @return integer
      */
-    public function getDiasTranscurridos()
-    {
+    public function getDiasTranscurridos() {
         return $this->diasTranscurridos;
     }
 
@@ -190,8 +205,7 @@ class Informe
      *
      * @return Informe
      */
-    public function setTipoAlerta($tipoAlerta)
-    {
+    public function setTipoAlerta($tipoAlerta) {
         $this->tipoAlerta = $tipoAlerta;
 
         return $this;
@@ -202,8 +216,7 @@ class Informe
      *
      * @return string
      */
-    public function getTipoAlerta()
-    {
+    public function getTipoAlerta() {
         return $this->tipoAlerta;
     }
 
@@ -214,8 +227,7 @@ class Informe
      *
      * @return Informe
      */
-    public function setTipoComprobante($tipoComprobante)
-    {
+    public function setTipoComprobante($tipoComprobante) {
         $this->tipoComprobante = $tipoComprobante;
 
         return $this;
@@ -226,8 +238,7 @@ class Informe
      *
      * @return string
      */
-    public function getTipoComprobante()
-    {
+    public function getTipoComprobante() {
         return $this->tipoComprobante;
     }
 
@@ -238,8 +249,7 @@ class Informe
      *
      * @return Informe
      */
-    public function setEstado($estado)
-    {
+    public function setEstado($estado) {
         $this->estado = $estado;
 
         return $this;
@@ -250,10 +260,10 @@ class Informe
      *
      * @return string
      */
-    public function getEstado()
-    {
+    public function getEstado() {
         return $this->estado;
     }
+
     /**
      * Set monto
      *
@@ -261,8 +271,7 @@ class Informe
      *
      * @return Informe
      */
-    public function setMonto($monto)
-    {
+    public function setMonto($monto) {
         $this->monto = $monto;
 
         return $this;
@@ -273,8 +282,56 @@ class Informe
      *
      * @return integer
      */
-    public function getMonto()
-    {
+    public function getMonto() {
         return $this->monto;
+    }
+
+
+    /**
+     * Set fechaCreacion
+     *
+     * @param \DateTime $fechaCreacion
+     *
+     * @return Informe
+     */
+    public function setFechaCreacion($fechaCreacion)
+    {
+        $this->fechaCreacion = $fechaCreacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaCreacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaCreacion()
+    {
+        return $this->fechaCreacion;
+    }
+
+    /**
+     * Set fechaActualizacion
+     *
+     * @param \DateTime $fechaActualizacion
+     *
+     * @return Informe
+     */
+    public function setFechaActualizacion($fechaActualizacion)
+    {
+        $this->fechaActualizacion = $fechaActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaActualizacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaActualizacion()
+    {
+        return $this->fechaActualizacion;
     }
 }

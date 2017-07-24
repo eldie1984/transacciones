@@ -46,20 +46,24 @@ class ArchivoController extends Controller
                 unset($datos[0]);
             }
             foreach($datos as $unInforme){
+//                var_dump($unInforme);
+//                die();
+//                var_dump($unInforme[18]);
                 $product = $this->getDoctrine()
         ->getRepository(Informe::class)
         ->findOneBy(array('nroRemitente' => $unInforme[0]));
 
     if (!$product) {
         $informe = new Informe();
-                $informe->setNroRemitente($unInforme[0]);
-                $informe->setDenominacion($unInforme[1]);
-                $informe->setFecha(\DateTime::createFromFormat('d/m/Y', $unInforme[2]));
-                $informe->setDiasTranscurridos($unInforme[3]);
-                $informe->setTipoAlerta($unInforme[4]);
-                $informe->setEstado($unInforme[5]);
-                $informe->setTipoComprobante($unInforme[6]);
-                $informe->setMonto($unInforme[7]);
+                $informe->setId($unInforme[18]);
+                $informe->setNroRemitente($unInforme[1]);
+                $informe->setDenominacion($unInforme[2]);
+                $informe->setFecha(\DateTime::createFromFormat('d/m/Y', $unInforme[0]));
+  //              $informe->setDiasTranscurridos($unInforme[3]);
+                $informe->setTipoAlerta($unInforme[3]);
+                $informe->setEstado($unInforme[4]);
+                $informe->setTipoComprobante($unInforme[5]);
+                $informe->setMonto($unInforme[12]);
                 $em->persist($informe);
                 $em->flush();
     }else{

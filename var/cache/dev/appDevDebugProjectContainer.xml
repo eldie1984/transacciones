@@ -621,7 +621,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>Cuuhh2PLP4m+v7BbIi+zhj</argument>
+      <argument>b7TIMdChXxqPADOuOzabbJ</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -631,7 +631,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>Cuuhh2PLP4m+v7BbIi+zhj</argument>
+      <argument>b7TIMdChXxqPADOuOzabbJ</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -3475,7 +3475,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>cma0SakMJq</argument>
       <argument>0</argument>
-      <argument>Cuuhh2PLP4m+v7BbIi+zhj</argument>
+      <argument>b7TIMdChXxqPADOuOzabbJ</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3483,7 +3483,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>H7LLaNn7nv</argument>
       <argument>0</argument>
-      <argument>Cuuhh2PLP4m+v7BbIi+zhj</argument>
+      <argument>b7TIMdChXxqPADOuOzabbJ</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3491,7 +3491,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>X+h2VJNNtv</argument>
       <argument>0</argument>
-      <argument>Cuuhh2PLP4m+v7BbIi+zhj</argument>
+      <argument>b7TIMdChXxqPADOuOzabbJ</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3499,7 +3499,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>rOxsqhZSz7</argument>
       <argument>0</argument>
-      <argument>Cuuhh2PLP4m+v7BbIi+zhj</argument>
+      <argument>b7TIMdChXxqPADOuOzabbJ</argument>
       <argument>/home/dgasch/transacciones/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
