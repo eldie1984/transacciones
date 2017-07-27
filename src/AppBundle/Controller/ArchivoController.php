@@ -45,41 +45,63 @@ class ArchivoController extends Controller
             if ($archivo->getEncabezado()==1){
                 unset($datos[0]);
             }
+            for($i=1;$i<sizeof($datos);$i++){
+                if (sizeof($datos[$i]) < 22){
+                    $j=$i+1;
+                    if (sizeof($datos[$j]) > 1){
+                       $aux_arr= $datos[$j];
+                    }else{
+                       $aux_arr=explode(",",$datos[$j][0]); 
+                    }
+                    
+                    while(strlen($aux_arr[0]) > 10){
+                        $datos[$i][sizeof($datos[$i])-1]=$datos[$i][sizeof($datos[$i])-1].$aux_arr[0];
+                        if (sizeof($aux_arr)==1){
+                            unset($datos[$j]);
+                            $j++;             
+                        $aux_arr=explode(",",$datos[$j][0]);
+                        }
+                        
+                    }
+                    $datos[$i][sizeof($datos[$i])]=$aux_arr[1];
+                            unset($datos[$j]);
+                            $i=$j;
+                }
+            }
             foreach($datos as $unInforme){
-//                var_dump($unInforme);
 //                die();
 //                var_dump($unInforme[18]);
+//                echo date_diff( \DateTime::createFromFormat('Y-m-d',date('Y-m-d', strtotime('third friday of '.date('F Y')))),\DateTime::createFromFormat('d/m/Y', '30/06/2017'))->format('%d');
+//                        die();
                 $product = $this->getDoctrine()
         ->getRepository(Informe::class)
         ->findOneBy(array('nroRemitente' => $unInforme[0]));
 
     if (!$product) {
         $informe = new Informe();
-                $informe->setId($unInforme[18]);
-                $informe->setNroRemitente($unInforme[1]);
-                $informe->setDenominacion($unInforme[2]);
-                $informe->setFecha(\DateTime::createFromFormat('d/m/Y', $unInforme[0]));
-  //              $informe->setDiasTranscurridos($unInforme[3]);
-                $informe->setTipoAlerta($unInforme[3]);
-                $informe->setEstado($unInforme[4]);
-                $informe->setTipoComprobante($unInforme[5]);
-                $informe->setMonto($unInforme[12]);
+                $informe->setId($unInforme[21]);
+                $informe->setNroRemitente($unInforme[0]);
+                $informe->setDenominacion($unInforme[1]);
+                $informe->setFecha(\DateTime::createFromFormat('d/m/Y', $unInforme[4]));
+                $informe->setDiasTranscurridos(date_diff( \DateTime::createFromFormat('Y-m-d',date('Y-m-d', strtotime('third friday of '.date('F Y')))),\DateTime::createFromFormat('d/m/Y', $unInforme[4]))->format('%d'));
+                $informe->setTipoAlerta($unInforme[6]);
+                $informe->setEstado($unInforme[7]);
+                $informe->setTipoComprobante($unInforme[9]);
+                $informe->setMonto($unInforme[14]);
+                $informe->setFechaCreacion(new \DateTime('now'));
+                $informe->setFechaActualizacion(new \DateTime('now'));
                 $em->persist($informe);
-                $em->flush();
+                //$em->flush();
     }else{
-        
-                $product->setDenominacion($unInforme[1]);
-                $product->setFecha(\DateTime::createFromFormat('d/m/Y', $unInforme[2]));
-                $product->setDiasTranscurridos($unInforme[3]);
-                $product->setTipoAlerta($unInforme[4]);
-                $product->setEstado($unInforme[5]);
-                $product->setTipoComprobante($unInforme[6]);
-                 $product->setMonto($unInforme[7]);
+        $product->setFechaActualizacion(new \DateTime('now'));
+                $product->setDiasTranscurridos(date_diff( \DateTime::createFromFormat('Y-m-d',date('Y-m-d', strtotime('third friday of '.date('F Y')))),\DateTime::createFromFormat('d/m/Y', $unInforme[4]))->format('%d'));
+                $product->setEstado($unInforme[7]);
                 $em->persist($product);
-                $em->flush();
+                
     }
                 
             }
+            $em->flush();
 //            $response = new CSVResponse(array_map('str_getcsv',file('/tmp/'.$fileName)), 200, [] );
 //$response->setFilename( "data.csv" );
 //return $response;
